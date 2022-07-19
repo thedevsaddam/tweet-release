@@ -1,0 +1,38 @@
+name: Tweet release action
+author: thedevsaddam
+description: A GitHub Action to Tweet about the release
+inputs:
+  tweet:
+    description: 'Tweet message body'
+    required: true
+  apiKey:
+    description: 'Twitter api key'
+    required: true
+  apiKeySecret:
+    description: 'Twitter api secret key'
+    required: true
+  accessToken:
+    description: 'Twitter access token'
+    required: true
+  accessTokenSecret:
+    description: 'Twitter access token secret'
+    required: true
+outputs:
+  errorMessage:
+    description: 'Error message'
+  successMessage:
+    description: 'Success Message'
+runs:
+  using: docker
+  image: docker://ghcr.io/thedevsaddam/tweet-release:v1.0.0
+  args:
+    - --tweet
+    - "${{ inputs.tweet }}"
+    - --apiKey
+    - ${{ inputs.apiKey }}
+    - --apiKeySecret
+    - ${{ inputs.apiKeySecret }}
+    - --accessToken
+    - ${{ inputs.accessToken }}
+    - --accessTokenSecret
+    - ${{ inputs.accessTokenSecret }}
